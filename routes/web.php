@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/portfolio/{portfolio}', [PageController::class, 'show'])->name('portfolio.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,7 +37,7 @@ Route::middleware(['auth', 'admin'])
         Route::resource('categories', CategoryController::class);
     // Portfolio------------
     Route::resource('portfolios', PortfolioController::class);
-    Route::get('portfolios/{portfolio}/delete-image/{index}', [PortfolioController::class, 'deleteImage'])->name('portfolios.delete.image');
+    Route::get('portfolios/delete-image/{id}', [PortfolioController::class, 'deleteImage'])->name('portfolios.delete.image');
 
     });
 

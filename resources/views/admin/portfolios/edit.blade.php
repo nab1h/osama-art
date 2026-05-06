@@ -43,15 +43,14 @@
                         <label class="block text-gray-700 mb-2 font-medium">الصور الحالية</label>
                         <div class="grid grid-cols-3 gap-4">
                             @if(!empty($portfolio->images))
-                            @foreach($portfolio->images as $index => $image)
-                            <div class="relative group">
-                                <img src="{{ asset('storage/' . $image) }}" class="w-full h-24 object-cover rounded border">
-                                <a href="{{ route('admin.portfolios.delete.image', [$portfolio, $index]) }}"
-                                    onclick="return confirm('حذف هذه الصورة؟')"
-                                    class="absolute top-1 left-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
+                            @foreach($portfolio->images as $image)
+                            <div class="...">
+                                <img src="{{ asset('storage/' . $image->path) }}">
+
+                                {{-- زر الحذف --}}
+                                <a href="{{ route('admin.portfolios.delete.image', $image->id) }}"
+                                    onclick="return confirm('حذف الصورة؟')">
+                                    <button>...</button>
                                 </a>
                             </div>
                             @endforeach

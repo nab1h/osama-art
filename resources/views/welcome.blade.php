@@ -129,7 +129,6 @@
                         هدفي هو تحويل أفكارك ومشاعرك إلى قطعة فنية فريدة تليق بمكانك وتروي قصتك. سواء كنت تبحث عن بورتريه عائلي كلاسيكي أو لوحة رقمية عصرية، أنا هنا لأجعل رؤيتك حقيقة.
                     </p>
 
-                    <!-- معلومات سريعة -->
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 text-right">
                         <div class="bg-gray-900/50 p-4 rounded-lg border-r-4 border-amber-500">
                             <span class="block text-amber-500 font-bold text-2xl">+10</span>
@@ -159,49 +158,121 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-gray-800">
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-amber-500 mb-4">أعمالي الفنية</h2>
                 <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">مجموعة مختارة من أحدث اللوحات التي قمت برسمها باستخدام تقنيات مختلفة.</p>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">مجموعة مختارة من أحدث اللوحات.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Portfolio Item 1 -->
-                <div class="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer">
-                    <img src="{{asset('1.jpg')}}" alt="لوحة 1" class="w-full h-80 object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">بورتريه الحزن</h3>
-                            <p class="text-amber-400">ألوان زيتية</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 2 -->
-                <div class="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer">
-                    <img src="{{asset('2.jpg')}}" alt="لوحة 2" class="w-full h-80 object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">هدوء الطبيعة</h3>
-                            <p class="text-amber-400">ألوان أكريليك</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 3 -->
-                <div class="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer">
-                    <img src="{{asset('3.jpg')}}" alt="لوحة 3" class="w-full h-80 object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">فوضى الألوان</h3>
-                            <p class="text-amber-400">فن تجريدي</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <a href="{{ route('home') }}#portfolio"
+                    class="px-6 py-2 rounded-full font-medium transition {{ !request('category_id') ? 'bg-amber-500 text-gray-900 shadow-lg' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 border border-gray-700' }}">
+                    الكل
+                </a>
+
+                @foreach($categories as $cat)
+                <a href="{{ route('home', ['category_id' => $cat->id]) }}#portfolio"
+                    class="px-6 py-2 rounded-full font-medium transition {{ request('category_id') == $cat->id ? 'bg-amber-500 text-gray-900 shadow-lg' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 border border-gray-700' }}">
+                    {{ $cat->name }}
+                </a>
+                @endforeach
             </div>
+
+            @if($portfolios->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($portfolios as $portfolio)
+
+                <a href="{{ route('portfolio.show', $portfolio->id) }}" class="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer bg-gray-800 block">
+                    <div class="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer bg-gray-800">
+
+                        <div class="swiper card-swiper h-80">
+                            <div class="swiper-wrapper">
+                                @if($portfolio->images->count() > 0)
+                                @foreach($portfolio->images as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('storage/' . $image->path) }}"
+                                        alt="{{ $portfolio->title }}"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                @endforeach
+                                @else
+                                <div class="swiper-slide">
+                                    <img src="https://via.placeholder.com/600x800?text=No+Image"
+                                        alt="No Image"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                @endif
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6 pointer-events-none">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">{{ $portfolio->title }}</h3>
+                                <p class="text-amber-400">{{ $portfolio->category->name ?? 'غير مصنف' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+
+            <div class="mt-12 flex justify-center">
+                {{ $portfolios->links() }}
+            </div>
+
+            @else
+            <div class="text-center text-gray-500 py-12">
+                <p>لا توجد أعمال فنية في هذا التصنيف حالياً.</p>
+            </div>
+            @endif
         </div>
     </section>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardSwipers = document.querySelectorAll('.card-swiper');
+            cardSwipers.forEach(function(swiperEl) {
+                new Swiper(swiperEl, {
+                    slidesPerView: 1,
+                    pagination: {
+                        el: swiperEl.querySelector('.swiper-pagination'),
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 800,
+                        disableOnInteraction: false,
+                    },
+                    loop: true,
+                    on: {
+                        init: function() {
+                            if (this.slides.length <= 1) {
+                                this.pagination.el.style.display = 'none';
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const paginationLinks = document.querySelectorAll('#pagination-links a');
+
+            paginationLinks.forEach(link => {
+                if (!link.href.includes('#')) {
+                    link.href += '#portfolio';
+                }
+            });
+        });
+    </script>
     <!-- Achievements Section (Updated: Image + Description) -->
     <section id="achievements" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

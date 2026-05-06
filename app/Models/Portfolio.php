@@ -7,14 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Portfolio extends Model
 {
     protected $fillable = [
+        'category_id',
         'title',
         'description',
-        'category_id',
-        'images'
-    ];
-
-    protected $casts = [
-        'images' => 'array',
     ];
 
     public function category()

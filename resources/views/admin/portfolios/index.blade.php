@@ -49,9 +49,9 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $portfolio->id }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    @if(!empty($portfolio->images))
-                                    <img src="{{ asset('storage/' . $portfolio->images[0]) }}" alt="{{ $portfolio->title }}" class="w-16 h-16 object-cover rounded shadow">
+                                <td class="px-2 w-5 h-5 ">
+                                    @if($portfolio->images->count() > 0)
+                                    <img class="w-10 h-auto object-cover rounded" src="{{ asset('storage/' . $portfolio->images->first()->path) }}" ...>
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">

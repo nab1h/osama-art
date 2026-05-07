@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\AchievementController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,10 @@ Route::middleware(['auth', 'admin'])
     // Portfolio------------
     Route::resource('portfolios', PortfolioController::class);
     Route::get('portfolios/delete-image/{id}', [PortfolioController::class, 'deleteImage'])->name('portfolios.delete.image');
+    // Achievement------------
+    Route::resource('achievements', AchievementController::class);
+    // Certificates------------
+    Route::resource('certificates', CertificateController::class);
 
     });
 

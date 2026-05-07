@@ -22,7 +22,23 @@
     <link rel="stylesheet" href="{{ asset('css/app-BNIzUq0t.css') }}">
 </head>
 
-<body class="font-sans antialiased">
+<style>
+    .achievement-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+    }
+
+    .achievement-image-wrapper {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+    }
+</style>
+
+<body class="font-sans antialiased overflow-x-scroll">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 

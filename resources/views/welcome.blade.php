@@ -284,48 +284,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Achievement Card 1 -->
+                @foreach ($achievements as $achievement )
+
                 <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-amber-500 transition duration-300 group">
                     <div class="overflow-hidden h-56">
-                        <img src="{{asset('6.jpg')}}" alt="جائزة أفضل لوحة" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <img src="{{asset('storage/' . $achievement->image)}}" alt="{{ $achievement->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
                     <div class="p-6">
-                        <span class="text-amber-500 text-sm font-bold">2022</span>
-                        <h3 class="text-xl font-bold text-white mt-2 mb-3">الفوز بجائزة الإبداع الفني</h3>
+                        <span class="text-amber-500 text-sm font-bold">{{ $achievement->year }}</span>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3">{{ $achievement->name }}</h3>
                         <p class="text-gray-400 text-sm leading-relaxed">
-                            حصولي على المركز الأول في مسابقة الإبداع الفني الدولية عن لوحة "معذبة الروح"، والتي نافست فيها أكثر من 500 فنان عالمي.
+                            {{ $achievement->description }}
                         </p>
                     </div>
                 </div>
-
-                <!-- Achievement Card 2 -->
-                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-amber-500 transition duration-300 group">
-                    <div class="overflow-hidden h-56">
-                        <img src="{{asset('7.jpg')}}" alt="معرض خاص" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-amber-500 text-sm font-bold">2021</span>
-                        <h3 class="text-xl font-bold text-white mt-2 mb-3">أول معرض فردي "ظلال النور"</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            إقامة أول معرض فردي لي في قاعة الفنون الكبرى، والذي شهد حضور أكثر من 1000 زائر وبيع 15 لوحة خلال الأسبوع الأول.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Achievement Card 3 -->
-                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-amber-500 transition duration-300 group">
-                    <div class="overflow-hidden h-56">
-                        <img src="{{asset('6.jpg')}}" alt="لوحة في متحف" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-amber-500 text-sm font-bold">2023</span>
-                        <h3 class="text-xl font-bold text-white mt-2 mb-3">اقتناء متحف الفن الحديث للوحتي</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            اختيار لوحة "الصمت الناطق" لتكون جزءاً من المجموعة الدائمة في متحف الفن الحديث، وهو شرف كبير في مسيرتي المهنية.
-                        </p>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </section>
@@ -342,19 +315,45 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Certificate Card 1 -->
+
+                @foreach ($certificates as $certificate)
                 <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-amber-500 transition duration-300 group">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="{{asset('6.jpg')}}" alt="شهادة البكالوريوس" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-amber-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">جامعية</div>
+
+                    <div class="relative overflow-hidden h-48 bg-gray-800">
+
+                        @if($certificate->image)
+                        <img
+                            src="{{ asset('storage/' . $certificate->image) }}"
+                            alt="{{ $certificate->title }}"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                        @else
+                        <div class="w-full h-full flex items-center justify-center text-gray-500">
+                            No Image
+                        </div>
+                        @endif
+
+                        <div class="absolute top-4 right-4 bg-amber-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
+                            {{ $certificate->name }}
+                        </div>
+
                     </div>
+
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">بكالوريوس الفنون الجميلة</h3>
-                        <p class="text-gray-500 text-sm mb-3">جامعة الفنون | 2014 - 2018</p>
+                        <h3 class="text-lg font-bold text-white mb-2">
+                            {{ $certificate->title }}
+                        </h3>
+
+                        <p class="text-gray-500 text-sm mb-3">
+                            {{ $certificate->issued_by }} | {{ $certificate->date }}
+                        </p>
+
                         <p class="text-gray-400 text-sm">
-                            تخصص رسم وجرافيك. تخرجت بتقدير امتياز مع مرتبة الشرف الأولى.
+                            {{ $certificate->description }}
                         </p>
                     </div>
+
                 </div>
+                @endforeach
 
                 <!-- Certificate Card 2 -->
                 <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-amber-500 transition duration-300 group">

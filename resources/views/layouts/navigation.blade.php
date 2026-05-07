@@ -36,6 +36,26 @@
                     </x-nav-link>
                 </div>
                 @endif
+
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link
+                        :href="route('admin.achievements.index')"
+                        :active="request()->routeIs('admin.achievements.*')">
+                        {{ __('الإنجازات') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link
+                        :href="route('admin.certificates.index')"
+                        :active="request()->routeIs('admin.certificates.*')">
+                        {{ __('الشهادات') }}
+                    </x-nav-link>
+                </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

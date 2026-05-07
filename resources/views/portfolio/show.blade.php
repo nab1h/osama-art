@@ -21,10 +21,7 @@
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: #111827;
-            /* اللون المطلوب */
         }
-
-        /* تخصيص ألوان أسهم Swiper */
         .swiper-button-next,
         .swiper-button-prev {
             color: #333;

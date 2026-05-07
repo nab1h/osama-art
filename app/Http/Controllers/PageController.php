@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
+use App\Models\Certificate;
+use App\Models\Achievement;
 use App\Models\Category;
 
 class PageController extends Controller
@@ -11,6 +13,8 @@ class PageController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $certificates = Certificate::all();
+        $achievements = Achievement::all();
         $query = Portfolio::with('images', 'category')->latest();
 
         if (request('category_id')) {
@@ -21,7 +25,7 @@ class PageController extends Controller
             ->appends(request()->query())
             ->fragment('portfolio');
 
-        return view('welcome', compact('portfolios', 'categories'));
+        return view('welcome', compact('portfolios', 'categories', 'certificates', 'achievements'));
     }
 
 

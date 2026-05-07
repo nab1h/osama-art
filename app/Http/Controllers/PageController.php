@@ -10,6 +10,7 @@ use App\Models\Achievement;
 use App\Models\Category;
 use App\Models\Testmnial;
 use App\Mail\ContactMail;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
@@ -33,8 +34,9 @@ class PageController extends Controller
             ->fragment('portfolio');
 
         $socialLink = SocialLink::first();
+        $settings = Setting::first();
 
-        return view('welcome', compact('portfolios', 'categories', 'certificates', 'achievements', 'socialLink', 'testimonials'));
+        return view('welcome', compact('portfolios', 'categories', 'certificates', 'achievements', 'socialLink', 'testimonials', 'settings'));
     }
 
 

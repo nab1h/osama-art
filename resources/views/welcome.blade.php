@@ -90,7 +90,7 @@
                 أرسم <span class="text-amber-500">أحلامك</span> وألون <span class="text-amber-500">واقعك</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                فنان تشكيلي متخصص في اللوحات الزيتية والبورتريه، أحاول نقل المشاعر الإنسانية إلى اللوحة من خلال ريشتي.
+                {{ $settings->hero }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#portfolio" class="bg-amber-500 text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-amber-400 transition transform hover:scale-105 shadow-lg">
@@ -110,14 +110,14 @@
                 <div class="md:w-1/3 relative">
                     <div class="w-64 h-64 md:w-80 md:h-80 mx-auto relative">
                         <div class="absolute inset-0 bg-amber-500 rounded-full transform -translate-x-4 -translate-y-4"></div>
-                        <img src="{{ asset('about.jpeg') }}" alt="صورة الفنان" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-gray-900 shadow-2xl">
+                        <img src="{{ asset('storage/' . $settings->image) }}" alt="صورة الفنان" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-gray-900 shadow-2xl">
                     </div>
                 </div>
                 <div class="md:w-2/3 text-center md:text-right">
                     <h2 class="text-amber-500 text-xl font-bold mb-2">مرحباً، أنا أسامة</h2>
-                    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6">فنان تشكيلي ومصمم جرافيك</h3>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6">فنان تشكيلي ومعلم فنون بصرية</h3>
                     <p class="text-gray-300 leading-relaxed mb-6 text-lg">
-                        منذ أكثر من 10 سنوات وأنا أتنفس الفن. بدأت رحلتي برسم الزيتية الكلاسيكية، وتطور شغفي ليشمل الفن الرقمي الحديث.
+                        {{ $settings->about }}
                     </p>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 text-right">
                         <div class="bg-gray-900/50 p-4 rounded-lg border-r-4 border-amber-500">
@@ -132,6 +132,14 @@
                             <span class="block text-amber-500 font-bold text-2xl">100%</span>
                             <span class="text-gray-400 text-sm">رضا العملاء</span>
                         </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="{{ asset('storage/' . $settings->cv) }}" class="bg-amber-500 text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-amber-400 transition transform hover:scale-105 shadow-lg">
+                            السيرة الذاتيه
+                        </a>
+                        <a href="#contact" class="border border-gray-500 text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-800 transition duration-300">
+                            اطلب لوحة
+                        </a>
                     </div>
                 </div>
             </div>
@@ -508,7 +516,7 @@
                 <div>
                     <img src="{{ asset('logo.png') }}" class="h-16 mb-4" alt="Logo">
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        فنان تشكيلي متخصص في اللوحات الزيتية والبورتريه، أسعى لنقل المشاعر الإنسانية إلى اللوحة بألوان تعبر عن الواقع.
+                        {{ $settings->hero }}
                     </p>
                 </div>
 

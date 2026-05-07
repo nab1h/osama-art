@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -64,10 +63,10 @@
                                 class="w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500">
 
                             @if(!empty($setting?->image))
-                            <div class="mt-4">
+                            <div class="mt-4 achievement-image-wrapper">
                                 <img
                                     src="{{ asset('storage/' . $setting->image) }}"
-                                    class="w-28 h-28 rounded-full object-cover border shadow">
+                                    class="achievement-image rounded-full object-cover border shadow">
                             </div>
                             @endif
                         </div>

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
-    // عرض صفحة الإعدادات
     public function edit()
     {
         $setting = Setting::first();

@@ -36,6 +36,38 @@
         height: 150px;
         overflow: hidden;
     }
+
+    .btn-toggle-on {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 3px 10px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-toggle-off {
+        background: linear-gradient(135deg, #9ca3af, #6b7280);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 3px 10px rgba(107, 114, 128, 0.2);
+    }
+
+    .btn-toggle-on:hover,
+    .btn-toggle-off:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
 </style>
 
 <body class="font-sans antialiased overflow-x-scroll">

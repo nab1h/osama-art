@@ -56,6 +56,39 @@
                     </x-nav-link>
                 </div>
                 @endif
+
+
+
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link
+                        :href="route('admin.social-links.index')"
+                        :active="request()->routeIs('admin.social-links.*')">
+                        {{ __('الروابط') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link
+                        :href="route('admin.testimonials.index')"
+                        :active="request()->routeIs('admin.testimonials.*')">
+                        {{ __('الأراء') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link
+                        :href="route('admin.settings.edit')"
+                        :active="request()->routeIs('admin.settings.*')">
+                        {{ __('الإعدادات') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
             </div>
 
             <!-- Settings Dropdown -->
